@@ -11,7 +11,6 @@ const Forecast = ({ title, data = [] }) => {
     let myChart = null;
   
     if (chartRef.current !== null) {
-      // Destroy existing chart if it exists
       if (myChart) {
         myChart.destroy();
       }
@@ -31,35 +30,35 @@ const Forecast = ({ title, data = [] }) => {
           ],
         },
         options: {
-          responsive: true, // Make the chart responsive
+          responsive: true, 
           maintainAspectRatio: false,
           scales: {
             y: {
               beginAtZero: true,
               grid: {
-                display: false, // Hide y-axis grid lines
+                display: false, 
               },
               ticks: {
-                color: 'white', // Change y-axis tick color to white
+                color: 'white', 
               },
             },
             x: {
               grid: {
-                display: false, // Hide x-axis grid lines
+                display: false, 
               },
               ticks: {
-                color: 'white', // Change x-axis tick color to white
+                color: 'white',
               },
             },
           },
           plugins: {
             legend: {
-              display: false, // Hide legend
+              display: false, 
             },
           },
           elements: {
             bar: {
-              borderWidth: 0, // Remove bar border
+              borderWidth: 0, 
             },
           },
         },
@@ -67,7 +66,7 @@ const Forecast = ({ title, data = [] }) => {
       });
     }
   
-    // Return a cleanup function to destroy the chart when component unmounts
+   
     return () => {
       if (myChart) {
         myChart.destroy();

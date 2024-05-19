@@ -2,7 +2,7 @@ import React from 'react';
 
 const TimeAndLocation = ({ weather }) => {
     if (!weather) {
-        return null; // Or a loading spinner, or some fallback content
+        return null; 
     }
 
     const { formattedLocalTime, name, country } = weather;

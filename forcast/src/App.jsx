@@ -18,14 +18,14 @@ const App = () => {
       const data = await getFormattedWeatherData({ q: query.q, units });
       console.log("Fetched Weather Data:", data);
       setWeather(data);
-      setError(null); // Reset error state if successful
+      setError(null); 
     } catch (error) {
       if (error.response && error.response.status === 404) {
         setError("City not found");
       } else {
-        setError("An error occurred while fetching weather data");
+        setError("Invalid City name");
       }
-      setWeather(null); // Reset weather state on error
+      setWeather(null); 
     }
   };
 
@@ -40,18 +40,18 @@ const App = () => {
     return "from-yellow to-orange-700"
   }
 
-  // Render loading indicator if weather data is not yet fetched
+ 
   if (!weather && !error) {
     return <div>Loading...</div>;
   }
 
-  // Once weather data is fetched, render the rest of the components
+
   return (
     <div className={`mx-auto max-w-screen-md mt-2 py-2 px-16  bg-gradient-to-br from-cyan-700 to-blue-700 h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}>
-      {/* Pass setQuery as a prop to TopButtons */}
+      
       <TopButtons setQuery={setQuery} />
       <Inputs setQuery={setQuery} setUnits={setUnits} />
-      {error && <div className="text-red-500">{error}</div>} {/* Render error message if there's an error */}
+      {error && <div className="text-red-500">{error}</div>} 
       {weather && (
         <>
           <TimeAndLocation weather={weather} />
