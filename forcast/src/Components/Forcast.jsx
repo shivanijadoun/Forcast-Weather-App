@@ -3,18 +3,18 @@ import Chart from "chart.js/auto";
 
 const Forecast = ({ title, data = [] }) => {
   const chartRef = useRef(null);
+
   useEffect(() => {
     const ctx = chartRef.current.getContext("2d");
     const labels = data.map((d) => d.title);
     const temperatures = data.map((d) => d.temp);
-  
     let myChart = null;
-  
+
     if (chartRef.current !== null) {
       if (myChart) {
         myChart.destroy();
       }
-  
+
       myChart = new Chart(ctx, {
         type: "bar",
         data: {
@@ -30,21 +30,23 @@ const Forecast = ({ title, data = [] }) => {
           ],
         },
         options: {
-          responsive: true, 
+          responsive: true,
           maintainAspectRatio: false,
           scales: {
             y: {
+              display: false,
               beginAtZero: true,
               grid: {
-                display: false, 
+                display: false,
               },
               ticks: {
-                color: 'white', 
+                color: 'white',
               },
             },
             x: {
               grid: {
-                display: false, 
+                display: false,
+              
               },
               ticks: {
                 color: 'white',
@@ -53,46 +55,42 @@ const Forecast = ({ title, data = [] }) => {
           },
           plugins: {
             legend: {
-              display: false, 
+              display: false,
             },
           },
           elements: {
             bar: {
-              borderWidth: 0, 
+              borderWidth: 0,
             },
           },
         },
-        
       });
     }
-  
-   
+
     return () => {
       if (myChart) {
         myChart.destroy();
       }
     };
   }, [data]);
-  
-  
 
   return (
     <div>
-      <div className="flex items-center justify-start mt-6 text-white">
+      <div className="relative flex items-center justify-start mt-6 text-white">
         <p className="font-medium uppercase">{title}</p>
       </div>
       <hr className="my-1" />
-      <div className="flex items-center justify-between">
+      <div className="relative flex items-center justify-around">
         {data.map((d, index) => (
           <div key={index} className="flex flex-col items-center justify-center">
             {/* <p className="font-medium">{d.title}</p> */}
-            <img src={d.icon} alt="weather-icon" className="w-12 my-1" />
-            <p className="font-medium">{`${d.temp}`}°</p>
+            <img src={d.icon} alt="weather-icon" className="w-10 my-1" />
+            <p className="font-medium">{`${Math.round(d.temp)}`}°</p>
           </div>
         ))}
       </div>
       <div className="flex items-center justify-center mt-3">
-        <div style={{ width: "600px", height: "400px" }}>
+        <div style={{ width: "100%", maxWidth: "800px" }}>
           <canvas ref={chartRef}></canvas>
         </div>
       </div>

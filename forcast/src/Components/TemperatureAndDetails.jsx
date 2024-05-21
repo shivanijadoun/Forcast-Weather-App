@@ -74,7 +74,7 @@ const TemperatureAndDetails = ({
       </div>
       <div className='flex flex-col md:flex-row items-center justify-between text-white py-3'>
         <img src={icon} alt="" className="w-20" />
-        <p className='text-5xl my-4 md:my-0'>{`${temp.toFixed()}°`}</p>
+        <p className='text-5xl my-7 md:my-0'>{`${Math.round(temp.toFixed())}°`}</p>
         <div className='flex flex-col space-y-3 items-start'>
           {verticaldetails.map(({ id, Icon, title, value }) => (
             <div
