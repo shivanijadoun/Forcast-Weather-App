@@ -1,6 +1,7 @@
 import React from 'react';
 
-function TopButtons({ setQuery }) {
+const TopButtons=({ setQuery})=> {
+   
     const cities = [
         {
             id: 1,
@@ -34,9 +35,30 @@ function TopButtons({ setQuery }) {
                 >
                     {city.title}
                 </button>
+
             ))}
+        
         </div>
     );
 }
 
 export default TopButtons;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// The TopButtons component is a React functional component that renders a set of buttons, each representing a city. When a button is clicked, it updates the query state to fetch weather data for the selected city.
