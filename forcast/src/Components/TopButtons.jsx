@@ -60,5 +60,3 @@ export default TopButtons;
 
 
 
-
-// The TopButtons component is a React functional component that renders a set of buttons, each representing a city. When a button is clicked, it updates the query state to fetch weather data for the selected city.
