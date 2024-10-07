@@ -34,10 +34,45 @@ const App = () => {
   }, [query, units]);
 
   const formatBackground = () =>{
-    if(!weather) return "from cyan-600 to-blue-700";
-    const threshold = units === "metric"?20:60;
-    if(weather.temp <= threshold) return "from-cyan-600 to-blue-700"
-    return "from-yellow to-orange-700"
+    if (!weather) return "from-cyan-600 to-blue-700";
+
+  const currentHour = new Date().getHours();
+  const threshold = units === "metric" ? 20 : 60;
+
+  // Time-based theme setting
+  let timeOfDay = '';
+  if (currentHour >= 5 && currentHour < 12) {
+    timeOfDay = 'morning';
+  } else if (currentHour >= 12 && currentHour < 18) {
+    timeOfDay = 'afternoon';
+  } else if (currentHour >= 18 && currentHour < 21) {
+    timeOfDay = 'evening';
+  } else {
+    timeOfDay = 'night';
+  }
+
+  // Weather condition handling (you can expand based on your API response)
+  const weatherCondition = weather.details.toLowerCase(); // Assuming `weather.details` contains something like "Clear" or "Clouds"
+
+  if (weather.temp <= threshold) {
+    if (weatherCondition.includes('clear')) {
+      return `from-cyan-600 to-blue-700 ${timeOfDay}-clear`;
+    } else if (weatherCondition.includes('clouds')) {
+      return `from-gray-400 to-gray-600 ${timeOfDay}-cloudy`;
+    } else if (weatherCondition.includes('rain')) {
+      return `from-blue-800 to-gray-900 ${timeOfDay}-rainy`;
+    }
+  } else {
+    if (weatherCondition.includes('clear')) {
+      return `from-yellow-400 to-orange-600 ${timeOfDay}-clear`;
+    } else if (weatherCondition.includes('clouds')) {
+      return `from-yellow-200 to-gray-400 ${timeOfDay}-cloudy`;
+    } else if (weatherCondition.includes('rain')) {
+      return `from-blue-600 to-gray-800 ${timeOfDay}-rainy`;
+    }
+  }
+
+  return "from-cyan-600 to-blue-700"; // Default fallback color
   }
 
  

@@ -24,19 +24,19 @@ const TemperatureAndDetails = ({
       id: 1,
       Icon: FaThermometerEmpty,
       title: "Real Feel",
-      value: `${feels_like.toFixed()}°`,
+      value: `${feels_like.toFixed(0)}°`,
     },
     {
       id: 2,
       Icon: BiSolidDropletHalf,
       title: "Humidity",
-      value: `${humidity.toFixed()}%`,
+      value: `${humidity.toFixed(0)}%`,
     },
     {
       id: 3,
       Icon: FiWind,
       title: "Wind",
-      value: `${speed.toFixed()}Km/h`,
+      value: `${speed.toFixed(0)}Km/h`,
     },
   ];
 
@@ -57,13 +57,13 @@ const TemperatureAndDetails = ({
       id: 3,
       Icon: MdKeyboardArrowUp,
       title: "High",
-      value: `${temp_max.toFixed()}°`,
+      value: `${temp_max.toFixed(0)}°`,
     },
     {
       id: 4,
       Icon: MdKeyboardArrowDown,
       title: "Low",
-      value: `${temp_min.toFixed()}°`,
+      value: `${temp_min.toFixed(0)}°`,
     },
   ];
 
@@ -74,7 +74,7 @@ const TemperatureAndDetails = ({
       </div>
       <div className='flex flex-col md:flex-row items-center justify-between text-white py-3'>
         <img src={icon} alt="" className="w-20" />
-        <p className='text-5xl my-7 md:my-0'>{`${Math.round(temp.toFixed())}°`}</p>
+        <p className='text-5xl my-7 md:my-0'>{`${Math.round(temp)}°`}</p>
         <div className='flex flex-col space-y-3 items-start'>
           {verticaldetails.map(({ id, Icon, title, value }) => (
             <div
